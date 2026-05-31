@@ -44,8 +44,8 @@ For every model family (Logistic Regression, LightGBM, Random Forest, SVM) and f
    - Calculate `cumulative_TP`, `cumulative_FP`, and `cumulative_profit` iteratively:
      - `cumulative_profit = (cumulative_TP * 10) - (cumulative_FP * 5) - (K * 200)`.
    - Generate **Cap/Lift Curves** on the OOF:
-     - Cap Curve: Plot $\frac{\text{cumulative_TP}}{\text{total_positive}}$ vs. fraction of population targeted (0 to 1).
-     - Lift Curve: Plot $\frac{\text{cumulative_TP} / \text{cumulative_total}}{\text{base_rate}}$ vs. fraction of population.
+     - Cap Curve: Plot $$\frac{\text{cumulative\_TP}}{\text{total\_positive}}$$ vs. fraction of population targeted (0 to 1).
+     - Lift Curve: Plot $$\frac{\text{cumulative\_TP} / \text{cumulative\_total}}{\text{base\_rate}}$$ vs. fraction of population.
      - Identify **kink points** (inflection points) where the curve flattens significantly, indicating where ROI degrades.
    - Find the index $i \le 1000$ that yields $\max(\text{cumulative\_profit})$.
    - **Validation Rule:** The profit-maximizing threshold $\tau_K$ must align with or precede the first visible kink in the Cap/Lift curves. If the peak is beyond the kink, apply a Safety Margin: $\tau_K := \max(\tau_K, 0.38)$ to absorb distribution shift risk.
